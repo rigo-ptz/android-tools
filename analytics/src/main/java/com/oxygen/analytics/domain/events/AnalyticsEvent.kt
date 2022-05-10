@@ -1,14 +1,14 @@
 package com.oxygen.analytics.domain.events
 
-internal interface Event
+interface Event
 
-internal interface AnalyticsEvent : Event {
+interface AnalyticsEvent : Event {
     val screenName: String
     val eventName: String?
     val data: Map<String, Any>?
 }
 
-internal interface UserPropertyEvent : Event {
+interface UserPropertyEvent : Event {
     val propertyName: String
     val propertyValue: Any
 }

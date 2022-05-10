@@ -67,13 +67,15 @@ object Trackk {
         itemName: String,
         price: Double,
         currency: String,
+        isVirtualCurrency: Boolean,
         exceptAdapters: List<TrackerId>,
     ) {
         val event = PurchaseEvent(
             screenName = screenName,
             itemName = itemName,
             currencyName = currency,
-            amount = price
+            amount = price,
+            isVirtualCurrency = isVirtualCurrency
         )
         Log.d(LOG_TAG, "Trackk::trackPurchaseEventInLocalCurrency ($event)")
         trackWorker.trackEvent(event, exceptAdapters)
