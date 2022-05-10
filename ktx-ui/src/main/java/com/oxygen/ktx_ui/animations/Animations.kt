@@ -1,7 +1,6 @@
 package com.oxygen.ktx_ui.animations
 
 import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.animation.ArgbEvaluator
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
@@ -25,7 +24,7 @@ import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.dynamicanimation.animation.SpringForce
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.oxygen.ktx_ui.context.color
-import com.oxygen.ktx_ui.dimensions.dpToPx
+import com.oxygen.ktx_ui.screen.dpToPx
 
 /**
  * @author Iamushev Igor

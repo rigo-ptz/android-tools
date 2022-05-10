@@ -1,14 +1,10 @@
 package com.oxygen.ktx_ui.resources
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Typeface
-import android.net.Uri
 import android.text.*
-import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
-import android.view.View
 import androidx.annotation.ColorRes
 import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes

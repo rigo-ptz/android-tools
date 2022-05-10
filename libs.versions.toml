@@ -20,10 +20,17 @@ androidxComposeMaterialVersion = "1.1.1"
 androidxComposeAnimationVersion = "1.1.1"
 androidxComposeToolingVersion = "1.1.1"
 androidxComposeVMVersion = "2.4.1"
+androidxRecyclerViewVersion = "1.2.1"
+androidxNavigationVersion = "2.4.2"
+androidxExifInterfaceVersion = "1.3.3"
 
 # Multithreading
 
 # Network & Serialization
+
+# Maps
+playServicesMapsVersion = "18.0.2"
+googleMapsUtilsVersion = "2.3.0"
 
 # Tests
 jUnitVersion = "4.13.2"
@@ -32,6 +39,10 @@ androidxEspressoVersion = "3.4.0"
 androidxComposeTestsVersion = "1.1.1"
 
 # Tools
+
+# Analytics
+appsFlyerVersion = "6.3.2"
+firebaseBomVersion = "30.0.0"
 
 [libraries]
 # UI Tools
@@ -45,6 +56,14 @@ androidxComposeMaterial = { module = "androidx.compose.material:material", versi
 androidxComposeAnimation = { module = "androidx.compose.animation:animation", version.ref = "androidxComposeAnimationVersion" }
 androidxComposeTooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidxComposeToolingVersion" }
 androidxComposeVM = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxComposeVMVersion" }
+androidxRecyclerView = { module = "androidx.recyclerview:recyclerview", version.ref = "androidxRecyclerViewVersion" }
+androidxNavigationRuntime = { module = "androidx.navigation:navigation-runtime-ktx", version.ref = "androidxNavigationVersion" }
+androidxNavigationFragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidxNavigationVersion" }
+androidxExifInterface = { module = "androidx.exifinterface:exifinterface", version.ref = "androidxExifInterfaceVersion" }
+
+# Maps
+playServicesMaps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMapsVersion" }
+googleMapsUtils = { module = "com.google.maps.android:android-maps-utils", version.ref = "googleMapsUtilsVersion" }
 
 # Tests
 jUnit = { module = "junit:junit", version.ref = "jUnitVersion" }
@@ -53,6 +72,13 @@ androidxEspresso = { module = "androidx.test.espresso:espresso-core", version.re
 androidxComposeTests = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "androidxComposeTestsVersion" }
 
 # Tools
+
+# Analytics
+appsFlyer = { module = "com.appsflyer:af-android-sdk", version.ref = "appsFlyerVersion" }
+firebaseAnalytics = { module = "com.google.firebase:firebase-analytics" }
+
+# BOMs
+firebaseBom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBomVersion" }
 
 [bundles]
 # UI Tools
@@ -66,8 +92,21 @@ androidxCompose = [
     "androidxComposeTooling",
     "androidxComposeVM"
 ]
+androidxViews = [
+    "androidxRecyclerView"
+]
+androidxNavigation = [
+    "androidxNavigationRuntime",
+    "androidxNavigationFragment"
+]
 googleMaterial = ["googleMaterial"]
 
 # Tests
 tests = ["jUnit"]
 uiTests = ["androidxJUnit", "androidxEspresso", "androidxComposeTests"]
+
+# Maps
+maps = [
+    "playServicesMaps",
+    "googleMapsUtils"
+]

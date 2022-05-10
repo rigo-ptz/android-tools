@@ -3,11 +3,10 @@ package com.oxygen.ktx_ui.views
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
-import android.media.ExifInterface
 import android.util.Base64
 import android.util.Log
+import androidx.exifinterface.media.ExifInterface
 import com.oxygen.ktx_ui.LOG_TAG
-import timber.log.Timber
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream

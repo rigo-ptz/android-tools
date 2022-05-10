@@ -16,11 +16,11 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.annotation.ColorInt
-import androidx.annotation.ColorRes
-import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
+import com.oxygen.ktx.safeLet
+import com.oxygen.ktx_ui.resources.ColorResource
 import com.oxygen.ktx_ui.resources.HtmlStringResource
 import com.oxygen.ktx_ui.resources.ImageResource
 import com.oxygen.ktx_ui.resources.StringResource
@@ -146,40 +146,6 @@ interface OnTextChanged {
   fun onTextChanged(text: CharSequence)
 }
 
-@BindingAdapter(value = ["model"])
-fun setupRecyclerView(
-  recyclerView: RecyclerView,
-  recyclerViewBindingModel: RecyclerViewBindingModel?
-) {
-  recyclerViewBindingModel?.also { model ->
-    val bindingAdapter = if (recyclerView.adapter is DataBindingAdapter) {
-      recyclerView.adapter as DataBindingAdapter
-    } else {
-      DataBindingAdapter()
-    }
-
-    with(recyclerView) {
-      layoutManager = model.layoutManager
-
-      if (recyclerView.itemDecorationCount > 0) {
-        for (index in 0 until recyclerView.itemDecorationCount) {
-          recyclerView.removeItemDecorationAt(0)
-        }
-      }
-      model.itemDecoration?.run { recyclerView.addItemDecoration(this) }
-
-      suppressLayout(model.suppressLayout)
-
-      adapter = bindingAdapter
-    }
-
-    with(bindingAdapter) {
-      animateOnChange = model.animateOnChange
-      update(model.dataBindingItems)
-    }
-  }
-}
-
 @BindingAdapter(value = ["playTexts"])
 fun playTexts(
   textSwitcher: TextSwitcher,
@@ -187,9 +153,12 @@ fun playTexts(
 ) {
   texts?.forEachIndexed { index, stringResource ->
     val delayed = 2000L * index
-    textSwitcher.postDelayed({
-      textSwitcher.setText(stringResource.getMessage(textSwitcher.context))
-    }, delayed)
+    textSwitcher.postDelayed(
+      {
+        textSwitcher.setText(stringResource.getMessage(textSwitcher.context))
+      },
+      delayed
+    )
   }
 }
 
@@ -213,11 +182,6 @@ fun onEditorAction(view: EditText, action: (() -> Unit)?) {
       else false
     }
   }
-}
-
-@BindingAdapter("cardBackground")
-fun setCardBackgroundColor(view: MaterialCardView, @ColorRes color: Int) {
-  view.setCardBackgroundColor(ContextCompat.getColor(view.context, color))
 }
 
 @BindingAdapter(value = ["isChecked"])

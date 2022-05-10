@@ -40,6 +40,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":analytics"))
+
     // Tests
     testImplementation(libs.bundles.tests)
     androidTestImplementation(libs.bundles.uiTests)

@@ -1,4 +1,4 @@
-package com.oxygen.ktx_ui.dimensions
+package com.oxygen.ktx_ui.screen
 
 import android.content.res.Resources
 import android.util.DisplayMetrics

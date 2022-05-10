@@ -41,12 +41,14 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.1.1"
+        kotlinCompilerExtensionVersion = "1.2.0-alpha08"
     }
 
 }
 
 dependencies {
+    implementation(project(":ktx"))
+
     testImplementation(libs.bundles.tests)
     androidTestImplementation(libs.bundles.uiTests)
 
@@ -56,4 +58,11 @@ dependencies {
     implementation(libs.bundles.androidxAnimations)
     implementation(libs.bundles.androidxCompose)
     implementation(libs.androidxDataBinding)
+    implementation(libs.bundles.androidxViews)
+    implementation(libs.bundles.androidxNavigation)
+    implementation(libs.androidxExifInterface)
+
+    implementation(libs.bundles.googleMaterial)
+
+    implementation(libs.bundles.maps)
 }
