@@ -6,11 +6,13 @@ import android.text.*
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import androidx.annotation.ColorRes
+import androidx.annotation.FontRes
 import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.core.content.ContextCompat
+import com.oxygen.ktx_ui.spans.getTypefaceSpan
 import java.io.Serializable
 
 interface StringResource : Serializable {
@@ -170,5 +172,45 @@ data class QuantityStringResource(
   @Composable
   override fun getMessage(): String = TODO("To implement in the future")
 
+}
+
+/**
+ * Applies font to [args]. In case [args] are not found in [stringResource] then the style is not
+ * applied.
+ */
+data class FontStringResource(
+  val stringRes: StringResource,
+  @FontRes val fontResId: Int,
+  val args: List<StringResource> = emptyList(),
+) : StringResource {
+
+  constructor(
+    stringRes: StringResource,
+    @FontRes fontResId: Int,
+    vararg args: StringResource
+  ) : this(
+    stringRes,
+    fontResId,
+    args.toList()
+  )
+
+  override fun getMessage(context: Context): CharSequence =
+    SpannableString(stringRes.getMessage(context)).apply {
+      args.forEach { argResource ->
+        argResource.getMessage(context).toString().let { arg ->
+          toString().indexOf(arg).takeIf { it != -1 }?.let { start ->
+            setSpan(
+              context.getFont(fontResId).getTypefaceSpan(),
+              start,
+              start + arg.length,
+              Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+          }
+        }
+      }
+    }
+
+  @Composable
+  override fun getMessage(): String = TODO("To implement in the future")
 }
 

@@ -2,6 +2,7 @@ package com.oxygen.validation.rules
 
 import android.util.Patterns
 import android.view.View
+import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.LiveData
@@ -48,6 +49,15 @@ fun TextView.textDiffersFromDefault(
             subject.value = differsFromDefault
             if (differsFromDefault) onSuccess?.invoke(input, this) else onError?.invoke(input, this)
         }
+    }
+    return subject
+}
+
+fun RadioGroup.isChecked(): LiveData<Boolean> {
+    val subject = MutableLiveData<Boolean>().apply { value = false }
+
+    setOnCheckedChangeListener { _, checkedId ->
+        subject.value = checkedId != -1
     }
     return subject
 }
